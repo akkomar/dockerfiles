@@ -13,19 +13,11 @@ RUN cd /tmp && \
     cd spark && \
     git checkout v1.6.0
 
-WORKDIR "/tmp/spark"
-
-RUN ./build/mvn --version
-
-RUN ./dev/change-scala-version.sh 2.11
-
-#RUN ./build/mvn -Dscala-2.11 -DskipTests clean package
-RUN ./make-distribution.sh --name custom-spark --tgz -Dscala-2.11
-
-
-RUN tar -xzf spark-1.6.0-bin-custom-spark.tgz -C /usr/local/
-
-RUN cd /usr/local && ln -s spark-1.6.0-bin-custom-spark spark
+RUN cd /tmp/spark && \
+    ./dev/change-scala-version.sh 2.11 && \
+    ./make-distribution.sh --name custom-spark --tgz -Dscala-2.11 && \
+    tar -xzf spark-1.6.0-bin-custom-spark.tgz -C /usr/local/ && \
+    cd /usr/local && ln -s spark-1.6.0-bin-custom-spark spark
 
 ENV SPARK_HOME /usr/local/spark
 
