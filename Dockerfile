@@ -28,23 +28,7 @@ ENV SPARK_WORKER_OPTS="-Dspark.driver.port=7001 -Dspark.fileserver.port=7002 -Ds
 
 ADD scripts/spark-defaults.conf /spark-defaults.conf
 ADD scripts/start-master.sh /start-master.sh
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ADD scripts/start-worker.sh /start-worker.sh
 
 
 
