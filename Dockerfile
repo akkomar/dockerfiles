@@ -27,4 +27,43 @@ RUN tar -xzf spark-1.6.0-bin-custom-spark.tgz -C /usr/local/
 
 RUN cd /usr/local && ln -s spark-1.6.0-bin-custom-spark spark
 
-#RUN ./make-distribution.sh --name custom-spark-1.6.0-2.11 --tgz -Phadoop-2.6 -Pyarn -Dscala-2.11 -Phive -Phive-thriftserver
+ENV SPARK_HOME /usr/local/spark
+
+ENV SPARK_MASTER_OPTS="-Dspark.driver.port=7001 -Dspark.fileserver.port=7002 -Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 -Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 -Dspark.broadcast.factory=org.apache.spark.broadcast.HttpBroadcastFactory"
+ENV SPARK_WORKER_OPTS="-Dspark.driver.port=7001 -Dspark.fileserver.port=7002 -Dspark.broadcast.port=7003 -Dspark.replClassServer.port=7004 -Dspark.blockManager.port=7005 -Dspark.executor.port=7006 -Dspark.ui.port=4040 -Dspark.broadcast.factory=org.apache.spark.broadcast.HttpBroadcastFactory"
+
+
+
+ADD scripts/spark-defaults.conf /spark-defaults.conf
+ADD scripts/start-master.sh /start-master.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ENV SPARK_MASTER_PORT 7077
+ENV SPARK_MASTER_WEBUI_PORT 8080
+ENV SPARK_WORKER_PORT 8888
+ENV SPARK_WORKER_WEBUI_PORT 8081
+
+EXPOSE 8080 7077 8888 8081 4040 7001 7002 7003 7004 7005 7006
