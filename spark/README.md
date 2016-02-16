@@ -12,4 +12,15 @@ Start master:
 
 Start worker:
 
-    docker run -d -t -P -e SPARK_MASTER_HOST=172.17.0.2 spark /start-worker.sh
+    docker run -d -t -P --name spark_worker -e SPARK_MASTER_HOST=172.17.0.2 spark /start-worker.sh
+
+
+Start master & worker:
+
+    docker-compose up
+
+
+
+
+Todo:
+* memory & cpu configuration

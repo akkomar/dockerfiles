@@ -5,8 +5,6 @@ services:
     ports:
       - "8080:8080"
       - "7077"
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.59.103
     command: /start-master.sh
 
   spark_slave_1:
@@ -14,5 +12,13 @@ services:
     ports:
       - "8081:8081"
     environment:
-      SPARK_MASTER_HOST: 172.18.0.2
+      SPARK_MASTER_HOST: 172.19.0.2
+    command: /start-worker.sh
+
+  spark_slave_2:
+    build: .
+    ports:
+      - "8082:8081"
+    environment:
+      SPARK_MASTER_HOST: 172.19.0.2
     command: /start-worker.sh

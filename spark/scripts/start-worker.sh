@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-export SPARK_LOCAL_IP=`awk 'NR==1 {print $1}' /etc/hosts`
+export SPARK_LOCAL_IP=`/sbin/ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'`
+echo "SPARK_LOCAL_IP=$SPARK_LOCAL_IP"
 
 /usr/local/spark/bin/spark-class org.apache.spark.deploy.worker.Worker \
 	spark://${SPARK_MASTER_HOST}:${SPARK_MASTER_PORT} \
