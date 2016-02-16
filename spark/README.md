@@ -19,7 +19,7 @@ Spark 1.6  with Scala 2.11
 
     docker-compose up
 
-Master ui: http://localhost:8080/
+Master web ui: http://localhost:8080/
 
 
 Todo:

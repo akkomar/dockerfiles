@@ -15,6 +15,8 @@ services:
       - spark-master
     environment:
       SPARK_MASTER_HOST: spark-master
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 500m
     command: /start-worker.sh
 
   spark-slave-2:
@@ -25,4 +27,6 @@ services:
       - spark-master
     environment:
       SPARK_MASTER_HOST: spark-master
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 500m
     command: /start-worker.sh
