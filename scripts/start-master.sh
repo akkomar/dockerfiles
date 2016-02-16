@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
 export SPARK_MASTER_IP=`awk 'NR==1 {print $1}' /etc/hosts`
-export SPARK_LOCAL_IP=`awk 'NR==1 {print $1}' /etc/hosts`
-/usr/local/spark/sbin/start-master.sh --properties-file /spark-defaults.conf -i $SPARK_LOCAL_IP "$@"
-/bin/bash
+
+/usr/local/spark/bin/spark-class org.apache.spark.deploy.master.Master --ip $SPARK_MASTER_IP --port $SPARK_MASTER_PORT --webui-port $SPARK_MASTER_WEBUI_PORT
